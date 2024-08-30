@@ -67,12 +67,14 @@ class ImgGenerator():
         self.__img_size = 'sd' # bigger resolutions mean longer image generation times
         
         self.__scale: float = 4 # default = 3.5 @ best keep at 3.5~5
-        self.__steps: int = 15  # default = 50 @ best keet at 10~20
+        self.__steps: int = 10  # default = 50 @ best keet at 10~20
 
         self.__generator = torch.Generator(device="cuda").manual_seed(0) # do not touch this unless you know what are you doing     
         
     
     def run(self):
+        print('\n\n') # if user downloaded model for the first time prints from Flux/huggingface library 
+                      # may overlap with print commands inside 'while' block, thats how we fix it
         while True:
             print(f'{self.__sys_prefix} Enter your prompt or type "exit" to exit the program')
             prompt = input(f'{self.__usr_prefix} ')

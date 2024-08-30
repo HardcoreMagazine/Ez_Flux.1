@@ -43,16 +43,19 @@ if __name__ == '__main__':
 
             if sel_mod_id == 2:
                 print(f'{sys_prefix} This model requires huggingface user authentication token in order to be downloaded')
-                from program.config.user_secrets import user_secrets
-                if not user_secrets['huggingface_auth_token'] or len(user_secrets['huggingface_auth_token']) == 0:
+                try:
+                    from program.config.user_secrets import user_secrets
+                    if not user_secrets['huggingface_auth_token'] or len(user_secrets['huggingface_auth_token']) == 0:
+                        print(f'{sys_prefix} The user auth token is not set, follow the guide on how to inside README.md file and restart the program')
+                        exit(0)
+                    else:
+                        auth_token = user_secrets['huggingface_auth_token']
+                except Exception:
                     print(f'{sys_prefix} The user auth token is not set, follow the guide on how to inside README.md file and restart the program')
                     exit(0)
-                else:
-                    auth_token = user_secrets['huggingface_auth_token']
         else:
             model = input(f'{sys_prefix} Enter full path to the catalog with your model (should contain "model_index.json" symlink): ')
             model = model.replace('/','\\\\').replace('\\', '\\\\')
-            cfg['settings']['download_path'] = model
             online = False
         
         print(f'{sys_prefix} Would you like to save all of your prompt history along with call parameters on your local drive? [Y/n]')
@@ -61,6 +64,7 @@ if __name__ == '__main__':
             cfg['settings']['save_prompt_history'] = str(False)
         
         cfg['settings']['initilized'] = str(True)
+        cfg['settings']['download_path'] = model
         update_config(cfg)
         
         generator = ImgGenerator(cfg, model, online, auth_token)
