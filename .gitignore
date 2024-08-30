@@ -1,4 +1,3 @@
 program/config/user_secrets.py
-program/config/appsettings.ini
 output/history/prompt_history.txt
 *.pyc
