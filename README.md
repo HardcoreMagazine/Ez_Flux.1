@@ -25,7 +25,7 @@ The download process is semi-automatic / guided.
 + Back in the project: open [config](/program/config/) catalog
 + Open file "user_secrets.md", copy everything inside
 + Create a new file with name: "user_secrets.py" and paste contents of "md" file
-+ Copy your access token from huggingface webpage and paste it inside empty quotes <''>, save and close the file
++ Copy your access token from huggingface webpage and replace value inside marked quotes '...', save and close the file
 
 ## How to use
 + Open project folder with VSCode or whichever editor you're using
@@ -37,3 +37,4 @@ The download process is semi-automatic / guided.
 If you want to add custom images to the Flux1.dev model (i.e. fine-tune it) AND if you don't trust corporations with your data - there is a way to expand model locally, but you're gonna need at least **24 GB** of VRAM to do so. 
 
 See: [ostris/ai-toolkit](https://github.com/ostris/ai-toolkit) & [Youtube Guide](https://www.youtube.com/watch?v=HzGW_Kyermg)
+
