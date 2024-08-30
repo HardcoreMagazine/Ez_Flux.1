@@ -1,0 +1,3 @@
+program/config/user_secrets.py
+output/history/prompt_history.txt
+*.pyc
