@@ -1,4 +1,4 @@
-res_presets = {
+common_presets = {
     '1:1': {
         'sd': {'h': 480, 'w': 480},
         'hd': {'h': 720, 'w': 720},

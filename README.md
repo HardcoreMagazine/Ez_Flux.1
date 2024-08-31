@@ -2,7 +2,8 @@
 Super-lightweight and easy-to-use terminal shell for Flux.1 image generation model created for people 
 who like light-weight solutions with full control over everything happening in the code.
 
-Current state of the project: bad code readability, but program working as expected. Tested on NVIDA RTX 3080 Ti mobile GPU.
+Current state of the project: the program is working as expected; tested on NVIDA RTX 3080 Ti mobile GPU; additional features 
+and better optimization logic is in progress.
 
 ## Features 
 + Image generation on demand (obviously)
