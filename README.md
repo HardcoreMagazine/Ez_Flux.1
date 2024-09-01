@@ -4,8 +4,7 @@ who like light-weight solutions with full control over everything happening in t
 
 ## this README is WIP, some informataion might be outdated as of now
 
-Current state of the project: the program is working as expected; tested on NVIDA RTX 3080 Ti mobile GPU 16 GB + 32GB RAM; additional features 
-and better optimization logic is in progress.
+Current state of the project: the program is working as expected; tested on NVIDA RTX 3080 Ti mobile GPU 16 GB + 32GB RAM; additional features and better optimization logic is in progress.
 
 ## Features 
 + Image generation on demand (obviously)
