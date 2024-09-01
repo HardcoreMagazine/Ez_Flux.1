@@ -69,9 +69,6 @@ Here's one of the methods you can use to change call paraments:
 Open [settings](/program/config/appsettings.ini) and set value of "initilized" variable to False, i.e. `initilized = False` and then launch / restart the program. 
 
 Note that old model will not be deleted this way, in order to switch back you'll need to complete this process again. 
-Open [settings](/program/config/appsettings.ini) and set value of "initilized" variable to False, i.e. `initilized = False` and then launch / restart the program. 
-
-Note that old model will not be deleted this way, in order to switch back you'll need to complete this process again. 
 
 
 ## Note
