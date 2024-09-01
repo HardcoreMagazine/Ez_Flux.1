@@ -2,8 +2,6 @@
 Super-lightweight and easy-to-use terminal shell for Flux.1 image generative model created for people 
 who like light-weight solutions with full control over everything happening in the code.
 
-## this README is WIP, some informataion might be outdated as of now
-
 Current state of the project: the program is working as expected; tested on NVIDA RTX 3080 Ti mobile GPU 16 GB + 32GB RAM; additional features and better optimization logic is in progress.
 
 ## Features 
@@ -13,22 +11,36 @@ Current state of the project: the program is working as expected; tested on NVID
 + Fully-automatic call history logging (can be disabled during first launch or inside [settings](/program/config/appsettings.ini))
 + Can be used on machines with borked / outdated GPU driver and on machines with low VRAM (don't expect any miracles though)
 
-## Initial setup (important)
-Before you get to play with Flux.1 image generator, the model needs to downloaded on your local hard drive. 
+## Features in progress
++ Live model call re-configuration without restarts
++ Live model swap without restarts
++ Better documentation
+
+## Setup
+
+### Python packages
+Open powershell / bash terminal inside project folder, execute following command, it should install most packages automatically:
+```ps
+pip install -r requirement.txt
+```
+Note that I used Python 3.10.6 to run this project.
+
+### Generative model
+Before you get to play with image generator, the model needs to downloaded on your local hard drive. 
 The download process is semi-automatic / guided. 
 
 > Note that the both 'Fast' and 'Dev' models use **30~40 GB** of free disk space by default (each). 
 
-### How to set huggingface access token (for 'Dev' model): 
+#### How to set huggingface access token (for 'Dev' model): 
 + Open [Flux1.dev webpage](https://huggingface.co/black-forest-labs/FLUX.1-dev) in your browser
 + Log in or Sign Up, agree to model access terms
 + Click on your avatar, open Settings page
 + Select Access Tokens and press "Create New Token"
 + In "token type" bar select "Read", add token name and click "Create token"
 + Keep page open for now, you'll need to copy access token later
-+ Back in the project: open [config](/program/config/) catalog
++ Back in the project: open [config catalog](/program/config/)
 + Open file "user_secrets.md", copy everything inside
-+ Create a new file with name: "user_secrets.py" and paste
++ Create a new file "user_secrets.py" and paste text from a previous step
 + Copy your access token from huggingface webpage and replace value inside marked quotes '...', save and close the file
 
 ## How to use
@@ -40,20 +52,17 @@ The download process is semi-automatic / guided.
 
 ## Changing model call parameters
 Each change in call parameters will require program to be restarted.
-+ Open [image_generator.py](/program/image_generator.py) and look for `def configure(self):` line
-+ Below this line you'll find 4 most important variables that can be changed:
-```
-self.__img_aspect_ratio = '9:16'
-self.__img_size = 'sd'
-self.__scale: float = 4
-self.__steps: int = 15
-```
-+ Descriptions for variables '__scale' and '__steps' provided above, in the same file.
-+ Common image aspect ratios and resolutions located in [common_image_formats.py](/program/config/common_image_formats.py) file
+
+Here's one of the methods you can use to change call paraments:
++ Open [FluxConfigurationProvider.py](/program/FluxConfigurationProvider.py)
++ Look for a line `def __init__ ....`
++ Change paraments to your liking, description for each parameter is provided above in the same file
 
 
 ## Switching between models
-Open [settings](/program/config//appsettings.ini) and set value of "initilized" variable to False, i.e. `initilized = False` and then launch /restart the program. Note that old model will not be deleted this way, in order to switch back you'll need to complete this process again. 
+Open [settings](/program/config/appsettings.ini) and set value of "initilized" variable to False, i.e. `initilized = False` and then launch / restart the program. 
+
+Note that old model will not be deleted this way, in order to switch back you'll need to complete this process again. 
 
 
 ## Side-note
