@@ -14,6 +14,7 @@ Current state of the project: the program is working as expected; tested on NVID
 
 
 ## Features in progress
++ New pipeline configuration options
 + Live model call re-configuration without restarts
 + Live model swap without restarts
 + Better documentation
@@ -42,9 +43,7 @@ The download process is semi-automatic / guided.
 + In "token type" bar select "Read", add token name and click "Create token"
 + Keep page open for now, you'll need to copy access token later
 + Back in the project: open [config catalog](/program/config/)
-+ Back in the project: open [config catalog](/program/config/)
 + Open file "user_secrets.md", copy everything inside
-+ Create a new file "user_secrets.py" and paste text from a previous step
 + Create a new file "user_secrets.py" and paste text from a previous step
 + Copy your access token from huggingface webpage and replace value inside marked quotes '...', save and close the file
 
