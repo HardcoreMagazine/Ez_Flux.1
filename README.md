@@ -42,7 +42,9 @@ The download process is semi-automatic / guided.
 + In "token type" bar select "Read", add token name and click "Create token"
 + Keep page open for now, you'll need to copy access token later
 + Back in the project: open [config catalog](/program/config/)
++ Back in the project: open [config catalog](/program/config/)
 + Open file "user_secrets.md", copy everything inside
++ Create a new file "user_secrets.py" and paste text from a previous step
 + Create a new file "user_secrets.py" and paste text from a previous step
 + Copy your access token from huggingface webpage and replace value inside marked quotes '...', save and close the file
 
@@ -65,6 +67,9 @@ Here's one of the methods you can use to change call paraments:
 
 
 ## Switching between models
+Open [settings](/program/config/appsettings.ini) and set value of "initilized" variable to False, i.e. `initilized = False` and then launch / restart the program. 
+
+Note that old model will not be deleted this way, in order to switch back you'll need to complete this process again. 
 Open [settings](/program/config/appsettings.ini) and set value of "initilized" variable to False, i.e. `initilized = False` and then launch / restart the program. 
 
 Note that old model will not be deleted this way, in order to switch back you'll need to complete this process again. 
