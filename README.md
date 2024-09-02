@@ -57,9 +57,10 @@ The download process is semi-automatic / guided.
 
 
 ## Changing model call parameters
-Each change in call parameters will require program to be restarted.
+Is now available on program launch, right inside your terminal!
 
-Here's one of the methods you can use to change call paraments:
+If you wish to change **DEFAULT** values (instead of session-only settings), 
+here's one of the methods on how you can do so:
 + Open [FluxConfigurationProvider.py](/program/FluxConfigurationProvider.py)
 + Look for a line `def __init__ ....`, in brackets you'll find call parameters.
 + Change paraments to your liking, description for each parameter is provided above, in the same file

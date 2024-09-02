@@ -1,4 +1,5 @@
 import pathlib
+from program.config.common_image_presets import common_presets
 from program.config.available_models import available_models
 from program.utility.ImageFilenameProvider import get_next_filename
 from program.utility.PromptLogProvider import log_call_to_file
@@ -123,6 +124,59 @@ class FluxContoller():
         return FluxPipelineProvider(model_path=model_path, online_mode=online_mode, use_optimized_settings=True, auth_token=auth_token).pipeline
     
     
+    def __get_user_params(self) -> FluxConfigurationProvider:
+        flux_config = FluxConfigurationProvider()
+
+        print(f'{self.__sys_prefix} Description for each parameter is available inside "./program/FluxConfigurationProvider.py" file')
+        
+        aar_keys_arr = list(common_presets.keys()) # Available Aspect Ratios
+        aar_values_str = '   '.join([f'[{i + 1}] {val}' for i, val in enumerate(aar_keys_arr)])
+        print(f'{self.__sys_prefix} Type aspect ratio preset number, available aspect ratios (default: {aar_keys_arr.index(flux_config.img_aspect_ratio) + 1}):\n{aar_values_str}')
+        
+        try:
+            r_idx = int(input(f'{self.__usr_prefix} ')) - 1
+            flux_config.img_aspect_ratio = aar_keys_arr[r_idx]
+        except:
+            pass # index out of bounds / failed cast to int -> use default (don't change)
+        finally:
+            del aar_keys_arr
+            del aar_values_str
+            print(f'{self.__sys_prefix} Selected aspect ratio: {flux_config.img_aspect_ratio}')
+        
+        r_keys_arr = list(common_presets[flux_config.img_aspect_ratio].keys())
+        r_values_str = '   '.join([f'[{i + 1}] {val}' for i, val in enumerate(r_keys_arr)])
+        print(f'{self.__sys_prefix} Type image resolution preset number, available resolutions (default: {r_keys_arr.index(flux_config.img_size) + 1}):\n{r_values_str}')
+        
+        try:
+            r_idx = int(input(f'{self.__usr_prefix} ')) - 1
+            flux_config.img_size = r_keys_arr[r_idx]
+        except:
+            pass # index out of bounds / failed cast to int -> use default (don't change)
+        finally:
+            del r_keys_arr
+            del r_values_str
+            print(f'{self.__sys_prefix} Selected image resolution: {flux_config.img_size}')
+        
+        print(f'{self.__sys_prefix} Type scale factor value (integer or floating-point number) (default: {flux_config.scale}):')
+        try:
+            scale = float(input(f'{self.__usr_prefix} '))
+            flux_config.scale = scale
+        except:
+            pass # failed cast to float -> use default (don't change)
+        finally:
+            print(f'{self.__sys_prefix} Selected scale factor: {flux_config.scale}')
+        
+        print(f'{self.__sys_prefix} Type number of generative steps (integer) (default: {flux_config.steps}):')
+        try:
+            steps = int(input(f'{self.__usr_prefix} '))
+            flux_config.steps = steps
+        except:
+            pass # failed cast to int -> use default (don't change)
+        finally:
+            print(f'{self.__sys_prefix} Selected number of steps: {flux_config.steps}')
+        
+        return flux_config
+    
     def run(self) -> None:
         print(f'{self.__sys_prefix} Initializing...')
         
@@ -133,11 +187,25 @@ class FluxContoller():
             model_path = self.__app_settings_provider.settings['settings']['model_path']
             self.__flux_pipeline = FluxPipelineProvider(model_path=model_path, use_optimized_settings=True).pipeline
         
-        flux_config = FluxConfigurationProvider()
-        flux_img_gen = FluxImageGeneratorProvider(self.__flux_pipeline)
-        
         print('\n\n\n') # workaround for some nasty visual bug
         
-        print('')
+        flux_config: FluxConfigurationProvider = FluxConfigurationProvider()
+        
+        print(f'{self.__sys_prefix} Loading default image generator parameters:\n'
+              f'\'image_aspect_ratio\' = {flux_config.img_aspect_ratio}\n'
+              f'\'image_resolution\' = {flux_config.img_size}\n'
+              f'\'scale\' = {flux_config.scale}\n'
+              f'\'steps\' = {flux_config.steps}\n')
+        
+        print(f'{self.__sys_prefix} Would you like to change these parameters before initializing image generator? [y/N]')
+        
+        change_params = input(f'{self.__usr_prefix} ')
+        if change_params.strip().lower() == 'y':
+            flux_config = self.__get_user_params()
+            print(f'{self.__sys_prefix} Note that these settings are stored in-memory and will be lost on program exit, '
+                  f'if you wish to change the defaults - see README.md file')
+
+        flux_img_gen = FluxImageGeneratorProvider(self.__flux_pipeline)
+        
         self.__begin_img_generation_loop(flux_img_gen=flux_img_gen, flux_config=flux_config)
 
