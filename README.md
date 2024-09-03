@@ -15,7 +15,7 @@ Current state of the project: the program is working as expected; tested on NVID
 
 ## Features in progress
 + New pipeline configuration options
-+ Live model call re-configuration without restarts
++ Live image generator parameters change (without program restarts) - DONE
 + Live model swap without restarts
 + Better documentation
 
