@@ -86,7 +86,7 @@ If your issue is not listed in this section, please create "New Issue" on [offic
 ### Changing default model download (cache) path
 By default huggingface library caches all models inside `C:\Users\%your_username%\.cache\huggingface\` catalog. 
 
-If you're using separate hard drives for storing files and OS and / or you're low on free hard drive space - you can change the default cache location by creating 'HF_HOME' environment variable in your system with desired cache location. 
+If you're using separate hard drives for storing files and OS and / or you're low on free hard drive space - you can change the default cache location by creating 'HF_HOME' user / environment variable. 
 
 Here's how to do this on Windows OS:
 + Open 'This Computer' or 'My Computer'
