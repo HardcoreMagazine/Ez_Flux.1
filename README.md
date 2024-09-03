@@ -33,7 +33,7 @@ Note that I used Python 3.10.6 to run this project.
 Before you get to play with image generator, the model needs to downloaded on your local hard drive. 
 The download process is semi-automatic / guided. 
 
-> Note that the both 'Fast' and 'Dev' models use **30~40 GB** of free disk space by default (each). 
+> Both 'schnell' and 'dev' models use **30~40 GB** of free disk space by default (each). 
 
 #### !!! How to get & set huggingface access token (for 'Dev' model): 
 + Open [Flux1.dev webpage](https://huggingface.co/black-forest-labs/FLUX.1-dev) in your browser
@@ -72,13 +72,36 @@ Open [settings](/program/config/appsettings.ini) and set value of "initilized" v
 Note that old model will not be deleted this way, in order to switch back you'll need to complete this process again. 
 
 
-## Note
+## Fine-tuning Flux.1
 If you want to add custom images to the Flux.1.dev model (i.e. fine-tune it) AND if you don't trust corporations with your data - there is a way to expand model locally, but you're gonna need at least **24 GB** of VRAM to do so. 
 
 See: [ostris/ai-toolkit](https://github.com/ostris/ai-toolkit) & [Youtube Guide](https://www.youtube.com/watch?v=HzGW_Kyermg)
 
 
-## Troubleshooting ('cuda' element is 'missing')
+## Troubleshooting 
+Quick guide on how to solve known issues. 
+
+If your issue is not listed in this section, please create "New Issue" on [official GitHub page](https://github.com/HardcoreMagazine/Ez_Flux.1/issues).
+
+### Changing default model download (cache) path
+By default huggingface library caches all models inside `C:\Users\%your_username%\.cache\huggingface\` catalog. 
+
+If you're using separate hard drives for storing files and OS and / or you're low on free hard drive space - you can change the default cache location by creating 'HF_HOME' environment variable in your system with desired cache location. 
+
+Here's how to do this on Windows OS:
++ Open 'This Computer' or 'My Computer'
++ Right-click on empty space inside opened window, select 'Properties'
++ On your left click 'Advanced system settings'
++ In newly opened window look for 'User variables for %your_username%'
++ Click 'New...'
++ Inside 'Variable name' field input `HF_HOME`
++ Inside 'Variable value' field input path to desired cache location, for example: `D:\NeuralNetworks\huggingface` (note that 'huggingface' catalog has to be created manually)
++ Click 'OK', 'OK', 'OK', close the 'System' window
++ Restart your VSCode to apply changes (or whichever terminal or code editor you're using)
+
+If you already have something downloaded inside the default cache location - simply move all contents of 'huggingface' catalog into inside newly created 'huggingface' folder at your desired cache location.
+
+### 'Cuda' element is 'missing' - on program launch
 By default pip should download package 'torch==2.0.1+cu117', where 'cu117' - CUDA driver version supported by MY graphics card, '11.7'. 
 
 I have no way to verify package / CUDA driver back-compatibility, so just in case, here's the instruction:
