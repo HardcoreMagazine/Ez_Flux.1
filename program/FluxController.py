@@ -53,7 +53,27 @@ class FluxContoller():
     
     
     def __display_menu(self):
-        pass # TODO
+        menu_items = ['[1] Initialize image generator', '[2] Change generator parameters', '[3] Exit the program']
+        menu_items_str = '   '.join(menu_items)
+        
+        print(f'{self.__sys_prefix} Main menu (type a number to switch)\n{menu_items}')
+        
+        sel_menu_item: int
+        while True:
+            try:
+                sel_menu_item = int(input(f'{self.__usr_prefix} '))
+                match sel_menu_item:
+                    case 1:
+                        break
+                    case 2:
+                        break
+                    case 3:
+                        exit(0)
+                    case _:
+                        raise Exception()
+            except:
+                print(f'{self.__sys_prefix} Bad input, try again')
+            
     
     
     def __setup_first_launch(self) -> any:
@@ -86,7 +106,7 @@ class FluxContoller():
                             break
                         else:
                             raise Exception()
-                except Exception:
+                except:
                     print(f'{self.__sys_prefix} Bad input, try again')
             
             model_path = available_models[sel_mod_id]['name']
@@ -104,7 +124,7 @@ class FluxContoller():
                     else:
                         auth_token = user_secrets['huggingface_auth_token']
 
-                except Exception: # also handles case when 'user_secrets.py' does not exists
+                except: # also handles case when 'user_secrets.py' does not exists
                     print(f'{self.__sys_prefix} The user authentication token is not set or not valid, follow the guide on how to inside README.md file and restart the program')
                     exit(0)
         else:
