@@ -1,5 +1,5 @@
 # Ez_Flux1.dev
-Super-lightweight and easy-to-use terminal shell for Flux.1 image generative model created for people 
+Super-lightweight and easy-to-use terminal shell for Flux.1 image generation model, created for people 
 who like light-weight solutions with full control over everything happening in the code.
 
 Current state of the project: the program is working as expected; tested on NVIDA RTX 3080 Ti mobile GPU 16 GB + 32GB RAM; additional features and better optimization logic is in progress.
