@@ -90,12 +90,14 @@ class FluxContoller():
                         self.__change_generator_params()
                         print(f'{self.__sys_prefix} Main menu (type action number)\n{menu_items_str}')
                     case 3:
-                        exit(0)
+                        print(f'{self.__sys_prefix} Shutting down...')
+                        break # workaround for one nasty bug that locks program in infinite print(...) loop
                     case _:
                         raise Exception()
             except:
                 print(f'{self.__sys_prefix} Bad input, try again')
-            
+        exit(0) # 'break' condition happened
+        
     
     def __setup_first_launch(self) -> any:
         model_path: str
