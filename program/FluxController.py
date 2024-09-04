@@ -92,6 +92,7 @@ class FluxContoller():
                     case 3:
                         print(f'{self.__sys_prefix} Shutting down...')
                         break # workaround for one nasty bug that locks program in infinite print(...) loop
+                        # EDIT: issue still persists if you create an image and then try to exit via 'menu' options
                     case _:
                         raise Exception()
             except:
