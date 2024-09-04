@@ -103,7 +103,7 @@ class FluxContoller():
         model_path: str
         online_mode: bool = True
         auth_token: str = None
-        use_ram_optimization: bool = self.__app_settings_provider.settings['settings']['optimize_to_use_ram']
+        use_optimized_config: bool = self.__app_settings_provider.settings['settings']['use_optimized_config']
         
         print(f'{self.__sys_prefix} First launch condition was detected, program needs to be configured before use')
         
@@ -155,12 +155,12 @@ class FluxContoller():
             online_mode = False
             model_path = input(f'{self.__sys_prefix} Enter full path to the catalog with your model (should contain "model_index.json" symlink): ').replace('/','\\\\').replace('\\', '\\\\')
 
-        print(f'{self.__sys_prefix} Would you like to use ram-optimized settings? [Y/n]')
+        print(f'{self.__sys_prefix} Would you like to use optimized pipeline config? [Y/n]')
         
         ram_optimized = input(f'{self.__usr_prefix} ')        
         if ram_optimized.strip().lower() == 'n':
-            use_ram_optimization = False
-            self.__app_settings_provider.settings['settings']['optimize_to_use_ram'] = str(False)
+            use_optimized_config = False
+            self.__app_settings_provider.settings['settings']['use_optimized_config'] = str(False)
         
         print(f'{self.__sys_prefix} Would you like to save all of your prompt history along with call parameters on your local drive? [Y/n]')
         
@@ -173,7 +173,7 @@ class FluxContoller():
         
         self.__app_settings_provider.update_config()
         
-        return FluxPipelineProvider(model_path=model_path, online_mode=online_mode, use_optimized_settings=use_ram_optimization, auth_token=auth_token).pipeline
+        return FluxPipelineProvider(model_path=model_path, online_mode=online_mode, use_optimized_settings=use_optimized_config, auth_token=auth_token).pipeline
     
     
     def __change_generator_params(self) -> None:
@@ -235,8 +235,8 @@ class FluxContoller():
             self.__flux_pipeline = self.__setup_first_launch()
         else:
             model_path = self.__app_settings_provider.settings['settings']['model_path']
-            optimize_to_use_ram = self.__app_settings_provider.settings['settings']['optimize_to_use_ram']
-            self.__flux_pipeline = FluxPipelineProvider(model_path=model_path, use_optimized_settings=optimize_to_use_ram).pipeline
+            use_optimized_config = self.__app_settings_provider.settings['settings']['use_optimized_config']
+            self.__flux_pipeline = FluxPipelineProvider(model_path=model_path, use_optimized_settings=use_optimized_config).pipeline
         
         print('\n\n\n') # workaround for some nasty visual bug
         
