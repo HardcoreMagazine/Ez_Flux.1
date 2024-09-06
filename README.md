@@ -2,7 +2,7 @@
 Super-lightweight and easy-to-use terminal shell for Flux.1 image generation model, created for people 
 who like light-weight solutions with full control over everything happening in the code.
 
-Current state of the project: the program is working as expected; tested on NVIDA RTX 3080 Ti mobile GPU 16 GB + 32GB RAM; additional features and better optimization logic is in progress.
+Current state of the project: everything is working as expected; tested on NVIDA RTX 3080 Ti mobile GPU 16 GB + 32GB RAM; additional features and better optimization logic is in progress.
 
 
 ## Features 
@@ -16,7 +16,7 @@ Current state of the project: the program is working as expected; tested on NVID
 ## Features in progress
 + New pipeline configuration options
 + Live image generator parameters change (without program restarts) - DONE
-+ Live model swap without restarts
++ ~~Live model swap without restarts~~
 + Better documentation
 
 
