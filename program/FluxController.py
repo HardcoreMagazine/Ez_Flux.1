@@ -91,13 +91,14 @@ class FluxContoller():
                         print(f'{self.__sys_prefix} Main menu (type action number)\n{menu_items_str}')
                     case 3:
                         print(f'{self.__sys_prefix} Shutting down...')
-                        break # workaround for one nasty bug that locks program in infinite print(...) loop
-                        # EDIT: issue still persists if you create an image and then try to exit via 'menu' options
+                        raise Exception('!force_exit') # workaround for one nasty bug that locks program in infinite printing loop
                     case _:
                         raise Exception()
-            except:
-                print(f'{self.__sys_prefix} Bad input, try again')
-        exit(0) # 'break' condition happened
+            except Exception as ex:
+                if ex.args.__contains__('!force_exit'):
+                    exit(0)
+                else:
+                    print(f'{self.__sys_prefix} Bad input, try again')
         
     
     def __setup_first_launch(self) -> any:
