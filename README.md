@@ -59,7 +59,7 @@ or in the main menu - type "menu" when the program asking for a prompt.
 ## Changing model call parameters
 This option is available on program launch and in 'menu', right inside the terminal shell.
 
-If you wish to change **DEFAULT** values (instead of session-only settings), 
+If you wish to change the **DEFAULT** parameters (instead of session-only settings), 
 here's one of the methods on how you can do so:
 + Open [FluxConfigurationProvider.py](/program/FluxConfigurationProvider.py)
 + Look for a line `def __init__ ....`, in brackets you'll find call parameters.
