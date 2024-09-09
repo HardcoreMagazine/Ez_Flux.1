@@ -13,11 +13,9 @@ Current state of the project: everything is working as expected; tested on NVIDA
 + Can be used on machines with borked / outdated GPU driver and on machines with low VRAM (don't expect any miracles though)
 
 
-## Features in progress
-+ New pipeline configuration options
-+ Live image generator parameters change (without program restarts) - DONE
-+ ~~Live model swap without restarts~~
-+ Better documentation
+## Features in development
++ ~~New pipeline configuration options~~
++ ~~Live image generator parameters change (without program restarts)~~
 
 
 ## Setup
@@ -54,10 +52,12 @@ The download process is semi-automatic / guided.
 + Follow the instructions on screen (if any)
 + After successful load of the Flux.1 model you'll be asked to "enter your prompt" - type your desired request. Empty and whitespace-only requests will be automatically handled by the program as invalid. 
 + If you wish to exit the program type "exit" instead of your request - or simply kill the process, should free-up system memory either way.
++ If you wish to change flux call parameters (aspect ratio, image resolution, guidance scale, number of steps) - you can do this on startup, 
+or in the main menu - type "menu" when the program asking for a prompt.
 
 
 ## Changing model call parameters
-Is now available on program launch, right inside your terminal!
+This option is available on program launch and in 'menu', right inside the terminal shell.
 
 If you wish to change **DEFAULT** values (instead of session-only settings), 
 here's one of the methods on how you can do so:
