@@ -29,7 +29,7 @@ class FluxConfigurationProvider():
     when >=20: simple images with blurry background;
     when >=40: complex images.
     
-    Note: 'schnell' model normally only needs 4-8 steps
+    Note: 'schnell' model normally only needs 4-10 steps
     """
     
     max_seq_len: int # default = 512 @ best keep this dynamic, 'len(prompt)'

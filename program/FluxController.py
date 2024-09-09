@@ -179,13 +179,11 @@ class FluxContoller():
     
     
     def __change_generator_params(self) -> None:
-        self.__flux_config = FluxConfigurationProvider()
-
         print(f'{self.__sys_prefix} Description for each parameter is available inside "./program/FluxConfigurationProvider.py" file')
         
         aar_keys_arr = list(common_presets.keys()) # Available Aspect Ratios
         aar_values_str = '   '.join([f'[{i + 1}] {val}' for i, val in enumerate(aar_keys_arr)])
-        print(f'{self.__sys_prefix} Type aspect ratio preset number, available aspect ratios (default: {aar_keys_arr.index(self.__flux_config.img_aspect_ratio) + 1}):\n{aar_values_str}')
+        print(f'{self.__sys_prefix} Type aspect ratio preset number, available aspect ratios (currently set to {aar_keys_arr.index(self.__flux_config.img_aspect_ratio) + 1}):\n{aar_values_str}')
         
         try:
             r_idx = int(input(f'{self.__usr_prefix} ')) - 1
@@ -199,7 +197,7 @@ class FluxContoller():
         
         r_keys_arr = list(common_presets[self.__flux_config.img_aspect_ratio].keys())
         r_values_str = '   '.join([f'[{i + 1}] {val}' for i, val in enumerate(r_keys_arr)])
-        print(f'{self.__sys_prefix} Type image resolution preset number, available resolutions (default: {r_keys_arr.index(self.__flux_config.img_size) + 1}):\n{r_values_str}')
+        print(f'{self.__sys_prefix} Type image resolution preset number, available resolutions (currently set to {r_keys_arr.index(self.__flux_config.img_size) + 1}):\n{r_values_str}')
         
         try:
             r_idx = int(input(f'{self.__usr_prefix} ')) - 1
@@ -211,7 +209,7 @@ class FluxContoller():
             del r_values_str
             print(f'{self.__sys_prefix} Selected image resolution: {self.__flux_config.img_size}')
         
-        print(f'{self.__sys_prefix} Type scale factor value (integer or floating-point number) (default: {self.__flux_config.scale}):')
+        print(f'{self.__sys_prefix} Type scale factor value (integer or floating-point number) (currently set to {self.__flux_config.scale}):')
         try:
             scale = float(input(f'{self.__usr_prefix} '))
             self.__flux_config.scale = scale
@@ -220,7 +218,7 @@ class FluxContoller():
         finally:
             print(f'{self.__sys_prefix} Selected scale factor: {self.__flux_config.scale}')
         
-        print(f'{self.__sys_prefix} Type number of generative steps (integer) (default: {self.__flux_config.steps}):')
+        print(f'{self.__sys_prefix} Type number of generative steps (integer) (currently set to {self.__flux_config.steps}):')
         try:
             steps = int(input(f'{self.__usr_prefix} '))
             self.__flux_config.steps = steps
@@ -228,6 +226,9 @@ class FluxContoller():
             pass # failed cast to int -> use default (don't change)
         finally:
             print(f'{self.__sys_prefix} Selected number of steps: {self.__flux_config.steps}')
+            
+        print(f'{self.__sys_prefix} Note that these settings are stored in-memory and will be lost on program exit, '
+              f'if you wish to change the defaults - see README.md file')
         
     
     def run(self) -> None:
@@ -252,8 +253,6 @@ class FluxContoller():
         change_params = input(f'{self.__usr_prefix} ')
         if change_params.strip().lower() == 'y':
             self.__change_generator_params()
-            print(f'{self.__sys_prefix} Note that these settings are stored in-memory and will be lost on program exit, '
-                  f'if you wish to change the defaults - see README.md file')
 
         self.__init_img_generator()
         
