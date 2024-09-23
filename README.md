@@ -1,4 +1,4 @@
-# Ez_Flux1.dev
+# Ez_Flux1
 Super-lightweight and easy-to-use terminal shell for Flux.1 image generation model, created for people 
 who like light-weight solutions with full control over everything happening in the code.
 
